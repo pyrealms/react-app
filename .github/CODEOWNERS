@@ -1,4 +1,4 @@
 * @pyrealms
 *.js @pyrealms
-*.yml @pyrealms
+*.yml @celavier
 /public/ @pyrealms
