@@ -1,0 +1,4 @@
+* @pyrealms
+*.js @pyrealms
+*.yml @pyrealms
+/public/ @pyrealms
