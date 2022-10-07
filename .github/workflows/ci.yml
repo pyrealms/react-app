@@ -24,7 +24,7 @@ jobs:
         run: npm run build
       - name: Deploy to staging
         if: github.event_name == 'push'
-        run: npx surge --project ./build --domain missing
+        run: npx surge --project ./build --domain six-match.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
