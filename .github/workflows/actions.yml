@@ -12,8 +12,12 @@ jobs:
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
       - run: |
-          curl --silent \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
-          https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key | \
-          jq '.key_id'
+          response=$(curl --silent \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
+            https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key)
+
+          key_id=$(echo $response | jq '.key_id')
+          key=$(echo $response | jq '.key')
+          echo "Key ID: $key_id"
+          echo "Key: $key"
