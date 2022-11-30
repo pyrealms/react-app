@@ -10,3 +10,8 @@ jobs:
           who-to-greet: "World"
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
+      - run: |
+          curl \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/OWNER/REPO/actions/secrets/public-key
