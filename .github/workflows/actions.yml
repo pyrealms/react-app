@@ -17,4 +17,4 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
           https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key)
 
-          echo "Response from curl = $public_key"
+          echo "Response from curl = $public_key.key_id"
