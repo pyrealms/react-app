@@ -19,5 +19,7 @@ jobs:
 
           key_id=$(echo $response | jq '.key_id')
           key=$(echo $response | jq '.key')
+      
+      - run: |
           echo "Key ID: $key_id"
           echo "Key: $key"
