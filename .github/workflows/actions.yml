@@ -16,7 +16,7 @@ jobs:
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
           https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key) | \
-          jq '.key_id .key'
+          jq '.key_id'
 
 
-          echo "Response from curl = $public_key.key_id"
+          echo "Response from curl = $public_key"
