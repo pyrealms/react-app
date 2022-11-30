@@ -12,7 +12,7 @@ jobs:
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
       - run: |
-          public_key = curl \
+          public_key=curl \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
           https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key
