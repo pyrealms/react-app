@@ -17,9 +17,9 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
             https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key)
 
-          key_id=$(echo $response | jq '.key_id')
-          key=$(echo $response | jq '.key')
+          echo "::set-output name=key_id::$(echo $response | jq '.key_id')"
+          echo "::set-output name=key::$(echo $response | jq '.key')"
       
       - run: |
-          echo "Key ID: $key_id"
-          echo "Key: $key"
+          echo "Key ID: ${{ steps.outputs.key_id }}"
+          echo "Key: ${{ steps.outputs.key }}"
