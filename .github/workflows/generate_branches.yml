@@ -21,7 +21,7 @@ jobs:
         run: |
           branches=$(git branch -r | awk -F\/ '{printf "- %s\\n       ", $2}')
           echo $branches
-          sed "s/- BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/qa_branches.yml      
+          sed "s/- BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/branches.yml      
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: New Branch List Created
