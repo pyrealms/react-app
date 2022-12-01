@@ -19,7 +19,8 @@ jobs:
       - name: Get Branches
         id: branches
         run: |
-          ls -la $GITHUB_WORKSPACE/.github/workflows
+          ls -la $GITHUB_WORKSPACE
+          ls -la $GITHUB_WORKSPACE/.github
           branches=$(git branch -r | awk -F\/ '{print "- "$2}')          
           sed "s/\$BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/qa_branches.yml      
       - uses: stefanzweifel/git-auto-commit-action@v4
