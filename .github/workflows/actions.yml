@@ -1,5 +1,5 @@
 on: push
-jobs: 
+jobs:
   testing_action:
     permissions: write-all
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
           who-to-greet: "World"
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
-      
+
       - name: Get public key object
         id: public_key
         run: |
@@ -22,7 +22,7 @@ jobs:
 
           echo "::set-output name=key_id::$(echo $response | jq '.key_id')"
           echo "::set-output name=key::$(echo $response | jq '.key')"
-      
+
       - name: Print keys
         run: |
           echo "Key ID: ${{ steps.public_key.outputs.key_id }}"
