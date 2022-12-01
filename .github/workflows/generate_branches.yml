@@ -19,7 +19,7 @@ jobs:
       - name: Get Branches
         id: branches
         run: |
-          branches=$(git branch -r | awk -F\/ '{printf "- %s\n          ", $2}')
+          branches=$(git branch -r | awk -F\/ '{printf "- %s\\n          ", $2}')
           echo $branches
           sed "s/BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/qa_branches.yml      
       - uses: stefanzweifel/git-auto-commit-action@v4
