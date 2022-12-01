@@ -9,9 +9,9 @@ on:
        type: choice
        options:
          - develop
-          - master
-          - workflows
-          
+         - master
+         - workflows
+         
      
 jobs:
  deployment:
