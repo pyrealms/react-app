@@ -9,7 +9,7 @@ jobs:
       - name: Checkout Repo
         run: |
           git init
-          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GHA_PAT }}@github.com/$GITHUB_REPOSITORY.git"
           git config --global user.email "bot@gizber.com"
           git config --global user.name "Gizber Bot"
           git fetch
