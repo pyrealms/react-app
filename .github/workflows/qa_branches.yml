@@ -8,7 +8,9 @@ on:
        required: true
        type: choice
        options:
-         Test
+         - develop
+- master
+- workflows
      
 jobs:
  deployment:
