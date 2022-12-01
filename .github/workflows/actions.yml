@@ -1,0 +1,29 @@
+on: push
+jobs:
+  testing_action:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/hello
+        id: hello
+        with:
+          who-to-greet: "World"
+      - run: |
+          echo "Time: ${{ steps.hello.outputs.time }}"
+
+      - name: Get public key object
+        id: public_key
+        run: |
+          response=$(curl --silent \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GHA_PAT }}" \
+            https://api.github.com/repos/${{ github.repository }}/actions/secrets/public-key)
+
+          echo "::set-output name=key_id::$(echo $response | jq '.key_id')"
+          echo "::set-output name=key::$(echo $response | jq '.key')"
+
+      - name: Print keys
+        run: |
+          echo "Key ID: ${{ steps.public_key.outputs.key_id }}"
+          echo "Key: ${{ steps.public_key.outputs.key }}"
