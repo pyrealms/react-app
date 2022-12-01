@@ -1,0 +1,27 @@
+name: Generate Branch List
+on: push
+
+jobs:
+  create-branch-list:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        run: |
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.ALL_PAT }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "bot@gizber.com"
+          git config --global user.name "Gizber Bot"
+          git fetch
+          git checkout workflows
+          git branch --set-upstream-to=origin/workflows
+          git pull
+      - name: Get Branches
+        id: branches
+        run: |
+          branches=$(git branch -r | awk -F\/ '{printf "- %s\\n          ", $2}')
+          echo $branches
+          sed "s/- BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/branches.yml
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: New Branch List Created

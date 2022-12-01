@@ -1,0 +1,19 @@
+name: Select Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The feature branch to review"
+        required: true
+        type: choice
+        options:
+          - BRANCH_OPTIONS
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing outputs
+        run: |
+          echo "Choice: ${{ inputs.branch }}"
