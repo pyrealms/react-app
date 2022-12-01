@@ -1,8 +1,9 @@
 name: Generate Branch List
 on: push
 
-jobs:
+jobs:  
   create-branch-list:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
