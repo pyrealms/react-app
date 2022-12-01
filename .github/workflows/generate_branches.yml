@@ -13,8 +13,8 @@ jobs:
           git config --global user.email "bot@gizber.com"
           git config --global user.name "Gizber Bot"
           git fetch
-          git checkout master
-          git branch --set-upstream-to=origin/master
+          git checkout workflow
+          git branch --set-upstream-to=origin/workflow
           git pull
       - name: Get Branches
         id: branches
