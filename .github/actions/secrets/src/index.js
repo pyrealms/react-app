@@ -3,7 +3,8 @@ const core = require("@actions/core");
 
 const text = core.getInput("text"); // replace with the secret you want to encrypt
 const key = core.getInput("key"); // replace with the Base64 encoded public key
-
+console.log("Text: ", text);
+console.log("Key: ", key);
 //Check if libsodium is ready and then proceed.
 sodium.ready.then(() => {
   // Convert Text & Base64 key to Uint8Array.

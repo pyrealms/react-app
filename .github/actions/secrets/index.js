@@ -40,7 +40,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(764);
+/******/ 		return __webpack_require__(951);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -2654,35 +2654,6 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 764:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
-const sodium = __webpack_require__(726);
-const core = __webpack_require__(470);
-
-const text = core.getInput("text"); // replace with the secret you want to encrypt
-const key = core.getInput("key"); // replace with the Base64 encoded public key
-
-//Check if libsodium is ready and then proceed.
-sodium.ready.then(() => {
-  // Convert Text & Base64 key to Uint8Array.
-  let binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL);
-  let binsec = sodium.from_string(text);
-
-  //Encrypt the text using LibSodium
-  let encBytes = sodium.crypto_box_seal(binsec, binkey);
-
-  // Convert encrypted Uint8Array to Base64
-  let secret = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
-
-  core.setOutput("secret", secret);
-
-  console.log(secret);
-});
-
-
-/***/ }),
-
 /***/ 803:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -2855,6 +2826,36 @@ function v1(options, buf, offset) {
 
 var _default = v1;
 exports.default = _default;
+
+/***/ }),
+
+/***/ 951:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const sodium = __webpack_require__(726);
+const core = __webpack_require__(470);
+
+const text = core.getInput("text"); // replace with the secret you want to encrypt
+const key = core.getInput("key"); // replace with the Base64 encoded public key
+console.log("Text: ", text);
+console.log("Key: ", key);
+//Check if libsodium is ready and then proceed.
+sodium.ready.then(() => {
+  // Convert Text & Base64 key to Uint8Array.
+  let binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL);
+  let binsec = sodium.from_string(text);
+
+  //Encrypt the text using LibSodium
+  let encBytes = sodium.crypto_box_seal(binsec, binkey);
+
+  // Convert encrypted Uint8Array to Base64
+  let secret = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
+
+  core.setOutput("secret", secret);
+
+  console.log(secret);
+});
+
 
 /***/ })
 
