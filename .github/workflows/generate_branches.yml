@@ -20,7 +20,8 @@ jobs:
         id: branches
         run: |
           branches=$(git branch -r | awk -F\/ '{print "- "$2"\n          "}')
-          sed -e "s/BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/qa_branches.yml      
+          branches="- develop\n- master\n- workflows"
+          sed "s/BRANCH_OPTIONS/$branches/g" $GITHUB_WORKSPACE/.github/templates/tpl_qa_branches.yml > $GITHUB_WORKSPACE/.github/workflows/qa_branches.yml      
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: New Branch List Created
