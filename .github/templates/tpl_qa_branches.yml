@@ -8,7 +8,7 @@ on:
        required: true
        type: choice
        options:
-         $BRANCH_OPTIONS
+         BRANCH_OPTIONS
      
 jobs:
  deployment:
