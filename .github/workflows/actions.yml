@@ -29,7 +29,7 @@ jobs:
           echo "Key: ${{ steps.public_key.outputs.key }}"
 
   verify_halt_on_error:
-    needs: verify_input
+    needs: testing_action
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
