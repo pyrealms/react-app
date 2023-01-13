@@ -34,7 +34,7 @@ jobs:
           echo '${{ env.branch }}'
       - name: check exit code        
         if: ${{ env.branch }} == ''
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             core.setFailed('Invalid branch name')
