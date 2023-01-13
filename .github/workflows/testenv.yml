@@ -1,4 +1,10 @@
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Enter feature branch name to review in QA"
+        required: true
+        type: string
 
 jobs:
   verify_input:
