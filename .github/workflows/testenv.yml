@@ -1,0 +1,32 @@
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Enter feature branch name to review in QA"
+        required: true
+        type: string
+
+jobs:
+  verify_input:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        run: |
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.PAT_WORKFLOWS }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "bot@gizber.com"
+          git config --global user.name "Gizber Bot"
+          git fetch
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull
+      - name: Get Branch
+        id: branch
+        run: |
+          branch=$(git branch -r --list 'origin/${{ inputs.branch }}')
+          echo 'branch=$branch' >> $GITHUB_OUTPUT
+          echo $branch
+      - name: echo env variable
+        run: |
+          echo '${{ env.branch }}'
