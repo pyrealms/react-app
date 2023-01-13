@@ -37,4 +37,4 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            core.setFailed('Invalid branch name')
+            core.setFailed('Invalid branch name: ${{ env.branch }}')

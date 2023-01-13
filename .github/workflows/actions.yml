@@ -27,3 +27,24 @@ jobs:
         run: |
           echo "Key ID: ${{ steps.public_key.outputs.key_id }}"
           echo "Key: ${{ steps.public_key.outputs.key }}"
+
+  verify_halt_on_error:
+    needs: verify_input
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        run: |
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.PAT_WORKFLOWS }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "bot@gizber.com"
+          git config --global user.name "Gizber Bot"
+          git fetch
+          git checkout dev
+          git branch --set-upstream-to=origin/dev
+          git pull
+      - name: Get Branches
+        id: branches
+        run: |
+          branches=$(git branch -r --list 'origin/${{ inputs.branch }}')          
+          echo $branches
