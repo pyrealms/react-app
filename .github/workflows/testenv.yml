@@ -27,7 +27,7 @@ jobs:
         id: branch
         run: |
           branch=$(git branch -r --list 'origin/${{ inputs.branch }}')
-          echo 'branch=$(echo $branch)' >> $GITHUB_OUTPUT
+          echo 'branch=$(echo $branch)' >> $GITHUB_ENV
           echo $branch
       - name: echo env variable
         run: |
