@@ -27,8 +27,14 @@ jobs:
         id: branch
         run: |
           branch=$(git branch -r --list 'origin/${{ inputs.branch }}')
-          echo branch=echo $branch >> $GITHUB_ENV
+          echo branch=$branch >> $GITHUB_ENV
           echo $branch
       - name: echo env variable
         run: |
           echo '${{ env.branch }}'
+      - name: check exit code        
+        if: ${{ env.branch }} == ''
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Invalid branch name')
