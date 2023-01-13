@@ -37,7 +37,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            core.setFailed('Invalid branch name: ${{ env.branch }}')
+            core.setFailed('Invalid branch name: ${{ inputs.branch }}')
 
   verify_halt_on_error:
     needs: verify_input
