@@ -17,12 +17,7 @@ jobs:
         run: |
           git init
           git remote add origin "https://$GITHUB_ACTOR:${{ secrets.PAT_WORKFLOWS }}@github.com/$GITHUB_REPOSITORY.git"
-          git config --global user.email "bot@gizber.com"
-          git config --global user.name "Gizber Bot"
           git fetch
-          git checkout master
-          git branch --set-upstream-to=origin/master
-          git pull
       - name: Get Branch
         id: branch
         run: |
