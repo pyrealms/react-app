@@ -51,8 +51,8 @@ jobs:
           git config --global user.email "bot@gizber.com"
           git config --global user.name "Gizber Bot"
           git fetch
-          git checkout dev
-          git branch --set-upstream-to=origin/dev
+          git checkout develop
+          git branch --set-upstream-to=origin/develop
           git pull
       - name: Get Branches
         id: branches
